@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "salary_prediction"
+version = "0.1.0"
+description = "Salary prediction machine learning project"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.21.0"
+pandas = "^1.3.0"
+scikit-learn = "^1.2.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+pytest-cov = "^2.12"
+mypy = "^0.910"
+black = "^21.6b0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
