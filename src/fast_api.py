@@ -2,22 +2,23 @@
 This module provides the FastAPI endpoints for the job salary prediction service.
 """
 
+from pathlib import Path
 from typing import Dict, Tuple, Any
+
 import logging
 import joblib
 import pandas as pd
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 from sklearn.preprocessing import LabelEncoder
+from pydantic import BaseModel  # Correct import
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
 
-class JobPosting(BaseModel):
+class JobPosting(BaseModel):  # pylint: disable=too-few-public-methods
     """
     Data model for job postings used in the prediction endpoint.
     """
@@ -31,7 +32,7 @@ class JobPosting(BaseModel):
 
 
 def load_model_and_encoders(
-    model_file: str = "prediction_models/random_forest.pkl",
+    model_file: Path = Path("prediction_models") / "random_forest.pkl",
 ) -> Tuple[Any, Dict[str, LabelEncoder]]:
     """
     Load the machine learning model and label encoders from the specified file.
@@ -67,7 +68,10 @@ def predict(job_posting: JobPosting) -> Dict[str, bool]:
                 if data[column][0] in le.classes_:
                     data[column] = le.transform([data[column][0]])[0]
                 else:
-                    raise HTTPException(status_code=400, detail=f"Unknown value for '{column}': {data[column][0]}.")
+                    raise HTTPException(
+                        status_code=400,
+                        detail=f"Unknown value for '{column}': {data[column][0]}.",
+                    )
 
         data["skills"] = data["skills"].apply(lambda x: len(x.split(",")))
 
@@ -76,12 +80,17 @@ def predict(job_posting: JobPosting) -> Dict[str, bool]:
             raise HTTPException(status_code=400, detail="Invalid date format.")
         data["posted_date"] = data["posted_date"].apply(lambda x: (x - pd.Timestamp("2000-01-01")).days)
 
-        features = ["job_title", "company", "location", "salary", "skills", "posted_date"]
+        features = [
+            "job_title",
+            "company",
+            "location",
+            "salary",
+            "skills",
+            "posted_date",
+        ]
         for feature in features:
             if feature not in data.columns:
                 raise HTTPException(status_code=400, detail=f"Missing required feature: '{feature}'")
-
-        data = data[features]
 
         data["salary"] = pd.to_numeric(data["salary"], errors="coerce")
         if data["salary"].isna().any():

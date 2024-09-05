@@ -20,7 +20,6 @@ RUN poetry install --no-dev --no-interaction --no-ansi
 COPY . .
 
 # Make sure the prediction_models directory is included in the container
-# (You should have a directory named prediction_models with your model inside it)
 COPY prediction_models /app/prediction_models
 
 # Expose the port the app runs on

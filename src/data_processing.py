@@ -2,9 +2,9 @@
 This module handles data processing tasks such as cleaning and encoding.
 """
 
-import re
-import pandas as pd
-from pathlib import Path
+from pathlib import Path  # Standard library import
+import re  # Standard library import
+import pandas as pd  # Third-party import
 
 
 def clean_data():
