@@ -16,11 +16,9 @@ from sklearn.metrics import (
     f1_score,
 )
 from sklearn.preprocessing import LabelEncoder
-
-# Adjust sys.path to ensure 'src' can be found when running the script directly
-sys.path.append(str(Path(__file__).resolve().parents[1]))
-
 from src.data_processing import data_parser, compute_median
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
 
 
 def process_data():
