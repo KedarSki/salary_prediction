@@ -11,4 +11,4 @@ This project is designed to help with basic Machine Learning workflows in Python
 
 🐳 Dockerized Application: A Docker container that can be deployed locally or on a cloud platform.
 
-🧪 Unit Tests: Tests covering your data processing, prediction logic, and API.
+🧪 Unit Tests: Tests covering data processing, prediction logic, and API.
