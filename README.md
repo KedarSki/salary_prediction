@@ -1,4 +1,4 @@
-Overview
+📋 Overview
 This project is designed to help with basic Machine Learning workflows in Python using Poetry for dependency management and pytest for testing. The goal of this project is to predict if a job's salary is above the median using a simple ML model. The project includes tasks such as data processing, model building, and deploying a basic FastAPI service, all packaged in a Docker container.
 
 🏆 Key Deliverables
@@ -13,13 +13,12 @@ This project is designed to help with basic Machine Learning workflows in Python
 
 🧪 Unit Tests: Tests covering your data processing, prediction logic, and API.
 
-How to Get Started:
 
+🚀 How to Get Started:
 Requirements:
-
-Python >= 3.8
-Poetry >= 1.2
-Docker (optional for containerized deployment)
+🐍 Python >= 3.8
+🧩 Poetry >= 1.2
+🐋 Docker (optional for containerized deployment)
 
 Setup:
 
@@ -44,7 +43,7 @@ Docker Deployment (Optional): Build and run the containerized application.
 docker build -t salary-prediction .
 docker run -p 8000:8000 salary-prediction
 
-Project Structure
+📂 Project Structure
 
 salary_prediction/
 │
@@ -63,6 +62,6 @@ salary_prediction/
 Makefile Guide
 The Makefile automates common tasks, such as:
 
-Dependency installation (make poetry-install-deps)
-Running tests (make check-all)
-Running linters like black, pylint, and mypy.
+🛠 Dependency Installation: make poetry-install-deps
+🔍 Running Tests: make check-all
+🧹 Running Linters: make black_check, make pylint, and make mypy
