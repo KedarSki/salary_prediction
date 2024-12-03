@@ -54,29 +54,28 @@ docker run -p 8000:8000 salary-prediction
 
 salary_prediction/
 
-│
 
-├── .venv/                  # Virtual environment (not included in GitHub)
+├── .venv/                    # Virtual environment (not included in GitHub)
 
-├── src/                    # Source code
+├── src/                      # Source code
 
-│   ├── models/             # ML models and training scripts
+│   ├── models/               # ML models and training scripts
 
-│   ├── data/               # Data processing pipeline
+│   ├── data/                 # Data processing pipeline
 
-│   ├── api/                # FastAPI application
+│   ├── api/                  # FastAPI application
 
-│   └── tests/              # Unit tests
+│   └── tests/                # Unit tests
 
-├── Dockerfile              # Docker container configuration
+├── Dockerfile                # Docker container configuration
 
-├── Makefile                # Automation scripts (tests, linting, etc.)
+├── Makefile                  # Automation scripts (tests, linting, etc.)
 
-├── pyproject.toml          # Poetry configuration
+├── pyproject.toml            # Poetry configuration
 
-├── README.md               # Documentation
+├── README.md                 # Documentation
 
-└── requirements.txt        # Dependencies (for non-Poetry users)
+└── requirements.txt          # Dependencies (for non-Poetry users)
 
 Makefile Guide
 The Makefile automates common tasks, such as:
