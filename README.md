@@ -1,4 +1,5 @@
 📋 Overview
+
 This project is designed to help with basic Machine Learning workflows in Python using Poetry for dependency management and pytest for testing. The goal of this project is to predict if a job's salary is above the median using a simple ML model. The project includes tasks such as data processing, model building, and deploying a basic FastAPI service, all packaged in a Docker container.
 
 🏆 Key Deliverables
