@@ -16,14 +16,19 @@ This project is designed to help with basic Machine Learning workflows in Python
 
 
 🚀 How to Get Started:
+
 Requirements:
+
 🐍 Python >= 3.8
+
 🧩 Poetry >= 1.2
+
 🐋 Docker (optional for containerized deployment)
 
 Setup:
 
 Clone the Repository:
+
 git clone https://github.com/YourGitHubUsername/salary_prediction.git
 cd salary_prediction
 
@@ -32,6 +37,7 @@ make poetry-download
 make poetry-install-deps
 
 Activate the Environment: Activate the virtual environment (manual method not included here)
+
 poetry shell
 
 Run Tests: Execute all tests to ensure everything works as expected.
@@ -47,22 +53,36 @@ docker run -p 8000:8000 salary-prediction
 📂 Project Structure
 
 salary_prediction/
+
 │
+
 ├── .venv/                  # Virtual environment (not included in GitHub)
+
 ├── src/                    # Source code
+
 │   ├── models/             # ML models and training scripts
+
 │   ├── data/               # Data processing pipeline
+
 │   ├── api/                # FastAPI application
+
 │   └── tests/              # Unit tests
+
 ├── Dockerfile              # Docker container configuration
+
 ├── Makefile                # Automation scripts (tests, linting, etc.)
+
 ├── pyproject.toml          # Poetry configuration
+
 ├── README.md               # Documentation
+
 └── requirements.txt        # Dependencies (for non-Poetry users)
 
 Makefile Guide
 The Makefile automates common tasks, such as:
 
 🛠 Dependency Installation: make poetry-install-deps
+
 🔍 Running Tests: make check-all
+
 🧹 Running Linters: make black_check, make pylint, and make mypy
