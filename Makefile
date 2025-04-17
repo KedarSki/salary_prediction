@@ -41,27 +41,52 @@ pylint:
 .PHONY: check-all
 check-all: black_check pylint mypy test
 
-#* Airflow
-.PHONY: run-airflow
-run-airflow:
-	cd airflow_local && docker compose up
+#* Airflow (local standalone)
+.PHONY: airflow-init
+airflow-init:
+	poetry run airflow db init
+	poetry run airflow users create \
+		--username admin \
+		--firstname Admin \
+		--lastname User \
+		--role Admin \
+		--email admin@example.com \
+		--password admin
 
-.PHONY: stop-airflow
-stop-airflow:
-	cd airflow_local && docker compose down
+.PHONY: airflow-start
+airflow-start:
+	poetry run airflow webserver -p 8080 & \
+	poetry run airflow scheduler
 
-#* CSV helper
-.PHONY: copy-csv
-copy-csv:
-	mkdir -p airflow_local/dags/files
-	cp data/salary.csv airflow_local/dags/files/salary.csv
+.PHONY: airflow-stop
+airflow-stop:
+	@pkill -f "airflow webserver" || true
+	@pkill -f "airflow scheduler" || true
 
-#* PostgreSQL
-.PHONY: psql-connect
-psql-connect:
-	psql -h localhost -p 5433 -U airflow -d salary_db
+#* DAG test (manual)
+.PHONY: dag-test
+dag-test:
+	poetry run python airflow/dags/salary_pipeline.dag.py
 
-#* DAG local test (optional python testing hook, not Airflow scheduler)
-.PHONY: etl-dag-test
-etl-dag-test:
-	poetry run python etl/helpers/transform.py
+#* Docker Oracle (future use)
+.PHONY: run-oracle-docker
+run-oracle-docker:
+	docker compose -f docker-compose.oracle.yml up -d
+
+.PHONY: stop-oracle-docker
+stop-oracle-docker:
+	docker compose -f docker-compose.oracle.yml down
+
+#* Docker Airflow (future use)
+.PHONY: run-airflow-docker
+run-airflow-docker:
+	docker compose -f docker-compose.airflow.yml up -d
+
+.PHONY: stop-airflow-docker
+stop-airflow-docker:
+	docker compose -f docker-compose.airflow.yml down
+
+#* Helpers
+.PHONY: wsl-path
+wsl-path:
+	@echo "Current WSL path: $(shell pwd)"
