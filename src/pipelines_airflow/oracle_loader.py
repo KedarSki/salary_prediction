@@ -10,10 +10,10 @@ load_dotenv()
 
 def load_jobs_from_csv(job_data_cleaned: str) -> None:
     try:
-        df = pd.read_csv(job_data_cleaned)
+        df = pd.read_csv(job_data_cleaned, encoding="latin1")
         df.columns = df.columns.str.upper()
 
-        expected_cols = {"TITLE", "COMPANY", "LOCATION", "SALARY"}
+        expected_cols = {"JOB_TITLE", "COMPANY", "LOCATION", "SALARY"}
         if not expected_cols.issubset(df.columns):
             raise ValueError(f"Expected columns missing in CSV file. Expected columns {expected_cols}")
 
@@ -29,6 +29,9 @@ def load_jobs_from_csv(job_data_cleaned: str) -> None:
         """
 
         data = df[["JOB_TITLE", "COMPANY", "LOCATION", "SALARY"]].values.tolist()
+        cursor.execute("TRUNCATE TABLE JOBS")
+        conn.commit()
+
         cursor.executemany(insert_sql, data)
         conn.commit()
         print("Data has been loaded to 'jobs' table")
