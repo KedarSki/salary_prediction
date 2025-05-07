@@ -56,7 +56,6 @@ cover/
 *.pot
 
 # Django stuff:
-*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -161,5 +160,18 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .vscode/
 
-#Environment symbols for security reasons
-.env/
+# Airflow & Docker project-specific
+airflow/logs/
+airflow/dags/data/
+
+# Docker files
+docker-compose.yaml
+Dockerfile
+
+# Misc
+*.log
+*.pid
+*.swp
+*.db
+*.sqlite
+.DS_Store
