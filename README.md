@@ -85,3 +85,12 @@ The Makefile automates common tasks, such as:
 🔍 Running Tests: make check-all
 
 🧹 Running Linters: make black_check, make pylint, and make mypy
+
+TODO:
+- Add missing classes to all files so instance of an objects will be possible to create
+- Single Responsibility Principle - data_processing.py and model_building.py both processing data. Place processing data in one file and each function e.g. Data cleaner, Data parser, data_process in according classes.
+- Implement interface load_model_and_encoders and predict to enable modifications.
+- Split train model method for smaller methods
+- Use Pathlib class where necessary to read paths by multiplatform 
+- Use context manager for database connection
+- All sensitive paths and any consent data place in .env file

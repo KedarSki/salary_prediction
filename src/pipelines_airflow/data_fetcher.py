@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)-+
+logger = logging.getLogger(__name__)
 
 def download_csv_from_url(url: str, output_path: str):
     try:

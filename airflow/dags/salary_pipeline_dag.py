@@ -40,8 +40,8 @@ with DAG(
 ) as dag_download:
 
     def run_fetcher():
-        url = Path(os.getenv("DATA_SOURCE"))
-        output_path = Path(os.getenv("OUTPUT_PATH"))
+        url = os.getenv("DATA_SOURCE")
+        output_path = os.getenv("OUTPUT_PATH")
         download_csv_from_url(url, output_path)
     
-    load_task = PythonOperator(task_id="fetch_csv_file", python_callable=run_fetcher)
+    fetch_task = PythonOperator(task_id="fetch_csv_file", python_callable=run_fetcher)
